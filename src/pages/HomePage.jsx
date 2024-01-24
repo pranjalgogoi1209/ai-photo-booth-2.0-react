@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import logo from "./../assets/logo.png";
 import {
   superHero01,
@@ -11,9 +12,9 @@ import {
   superHero07,
   superHero08,
   superHero09,
-} from "./../assets/home-page/index";
+} from "../assets/home-page/index";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <HomeWrapper>
       {/* header starts here */}
@@ -28,8 +29,12 @@ export default function Home() {
       {/* main starts here */}
       <main>
         <div className="buttons">
-          <button className="startNow">Start Now</button>
-          <button className="knowMore">Know More</button>
+          <Link to={"/capture-image"}>
+            <button className="startNow">Start Now</button>
+          </Link>
+          <Link to={"/know-more"}>
+            <button className="knowMore">Know More</button>
+          </Link>
         </div>
         <div className="images">
           <div className="firstContainer">
@@ -83,6 +88,7 @@ const HomeWrapper = styled.div`
     }
     .logo {
       width: 10vw;
+      height: 10vw;
       border: 1px solid red;
       img {
         width: 100%;
@@ -113,12 +119,13 @@ const HomeWrapper = styled.div`
         font-weight: 600;
         font-size: 1.5vw;
         border-radius: 0.6vw;
+        cursor: pointer;
       }
       .startNow {
         background-color: yellow;
       }
       .knowMore {
-        border: 1px solid black;
+        border: 0.1vw solid black;
         background-color: transparent;
       }
     }
@@ -129,7 +136,14 @@ const HomeWrapper = styled.div`
       border: 1px solid blue;
       display: flex;
       justify-content: center;
-      gap: 0.5vw;
+      gap: 1vw;
+      img {
+        box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
+        border-radius: 0.9vw;
+      }
+      img:hover {
+        transform: scale(1.07);
+      }
       .firstContainer,
       .fifthContainer {
         border: 1px solid black;
@@ -139,6 +153,7 @@ const HomeWrapper = styled.div`
         align-items: center;
         img {
           width: 13vw;
+          transition: all ease 0.5s;
         }
       }
       .secondContainer,
@@ -149,8 +164,10 @@ const HomeWrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 1vw;
         img {
           width: 12vw;
+          transition: all ease 0.5s;
         }
       }
       .thirdContainer {
@@ -164,6 +181,7 @@ const HomeWrapper = styled.div`
         .thirdContainerChildOne {
           img {
             width: 22vw;
+            transition: all ease 0.5s;
           }
         }
         .thirdContainerChildTwo {
@@ -176,6 +194,9 @@ const HomeWrapper = styled.div`
           }
           img:last-child {
             width: 9vw;
+          }
+          img {
+            transition: all ease 0.5s;
           }
         }
       }
