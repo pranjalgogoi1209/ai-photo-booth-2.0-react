@@ -28,7 +28,7 @@ export default function CaptureImagePage({ setCapturedImg }) {
     autoClose: 4000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: "light",
   };
 
   const handleSubmit = () => {
@@ -89,6 +89,7 @@ const CaptureImageWrapper = styled.div`
       position: relative;
       height: 75vh;
       width: 30vw;
+      background-color: #f1f1f1;
       /* box-shadow: 1vw, 1vw, 1vw rgba(0, 0, 0, 0.5); */
       /* border: 5px solid black; */
       .webcamParent {
