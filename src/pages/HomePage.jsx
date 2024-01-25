@@ -120,9 +120,16 @@ const HomeWrapper = styled.div`
         font-size: 1.5vw;
         border-radius: 0.6vw;
         cursor: pointer;
+        box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
+        transform: translateY(-0.1vw);
+        transition: all ease 0.5s;
+        &:hover {
+          box-shadow: none;
+          transform: translateY(0);
+        }
       }
       .startNow {
-        background-color: yellow;
+        background-color: #fcb017;
       }
       .knowMore {
         border: 0.1vw solid black;

@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { superHeros } from "../utils/constants";
 import logo from "./../assets/logo.png";
+import select from "./../assets/select.png";
 
-export default function AvatarPage({ capturedImage }) {
+export default function AvatarPage({ capturedImage, setGeneratedImage }) {
+  const navigate = useNavigate();
+  const [selectedImageIndex, setSelectedImageIndex] = useState();
+  const [selectedImage, setSelectedImage] = useState();
+
   capturedImage && console.log("capturedImage =>", capturedImage);
-  console.log(superHeros);
+  selectedImage && console.log("selectedImage =>", selectedImage);
+
+  // converting selectedImage to base64 format
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+
+  const getImageData = img => {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    context.drawImage(img, 0, 0);
+    return canvas.toDataURL("image/png");
+  };
+
+  // submitting the selected image and post request to api
+
+  const handleSubmit = () => {
+    console.log("clicked");
+    setGeneratedImage("");
+    axios
+      .post("https://396e-103-17-110-13.ngrok-free.app/rec", {
+        image: capturedImage.split(",")[1],
+        choice: selectedImage.split(",")[1],
+      })
+      .then(function (response) {
+        console.log(response);
+        setGeneratedImage(`data:image/webp;base64,${response.data.result}`);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    navigate("/generated-image");
+  };
   return (
     <AvatarPageWrapper>
       {/* header starts here */}
@@ -22,18 +60,36 @@ export default function AvatarPage({ capturedImage }) {
       {/* main starts here */}
       <main>
         {superHeros &&
-          superHeros.map((superHero, index) => (
+          superHeros.map((src, index) => (
             <div
               key={index}
-              className="singleSuperHero"
+              className="singleImageContainer"
               id={(index == 2) | (index == 6) ? "mt" : ""}
+              onClick={() => {
+                setSelectedImageIndex(index);
+                var img = new Image();
+                img.src = src;
+                img.onload = () => {
+                  setSelectedImage(getImageData(img));
+                };
+              }}
             >
-              <img src={superHero} alt="super hero" />
+              <div className="imageParent">
+                <img src={src} alt="super hero" />
+                <div className="imageHoverContainer"></div>
+              </div>
+              <img
+                src={select}
+                alt="selected"
+                className={`selectIcon ${
+                  selectedImageIndex === index ? "showSelectIcon" : ""
+                }`}
+              />
             </div>
           ))}
       </main>
       <footer>
-        <button>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </footer>
       {/* main ends here */}
     </AvatarPageWrapper>
@@ -82,19 +138,64 @@ const AvatarPageWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 1vw;
+    gap: 1.5vw;
     flex-wrap: wrap;
     height: 90vh;
     width: 70%;
     margin: 1vw auto 0 auto;
-    .singleSuperHero {
-      border: 1px solid black;
-      img {
-        width: 12vw;
+    .singleImageContainer {
+      /* border: 1px solid black; */
+      box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
+      border-radius: 0.9vw;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      .imageParent {
+        /* position: relative; */
+        height: 100%;
+        img {
+          width: 12vw;
+          height: 100%;
+          box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
+          border-radius: 0.9vw;
+          transition: all ease 0.5s;
+        }
+        &:hover img {
+          transform: scale(1.1);
+        }
+        &:hover .imageHoverContainer {
+          opacity: 1;
+        }
+        .imageHoverContainer {
+          background: linear-gradient(
+            transparent,
+            transparent,
+            rgba(0, 0, 0, 1)
+          );
+          opacity: 0;
+          /* border: 1px solid black; */
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: 0.9vw;
+          transition: all ease 0.5s;
+        }
+      }
+      .selectIcon {
+        display: none;
+        position: absolute;
+        bottom: 5%;
+        left: 40%;
+        width: 3vw;
+      }
+      .showSelectIcon {
+        display: flex;
       }
     }
     #mt {
-      margin-top: 8vw;
+      margin-top: 5vw;
     }
   }
   /* main ends here */
@@ -110,9 +211,16 @@ const AvatarPageWrapper = styled.div`
       font-size: 1.5vw;
       border-radius: 0.6vw;
       cursor: pointer;
-      background-color: yellow;
+      background-color: #fcb017;
       margin: 0 auto;
       display: block;
+      box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
+      transform: translateY(-0.1vw);
+      transition: all ease 0.5s;
+      &:hover {
+        box-shadow: none;
+        transform: translateY(0);
+      }
     }
   }
   /* footer ends here */
