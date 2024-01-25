@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { superHeros } from "../utils/constants";
 import logo from "./../assets/logo.png";
 import select from "./../assets/select.png";
@@ -25,24 +27,36 @@ export default function AvatarPage({ capturedImage, setGeneratedImage }) {
     return canvas.toDataURL("image/png");
   };
 
-  // submitting the selected image and post request to api
+  // toast options
+  const toastOptions = {
+    position: "bottom-left",
+    autoClose: 4000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "light",
+  };
 
+  // submitting the selected image and post request to api
   const handleSubmit = () => {
     console.log("clicked");
     setGeneratedImage("");
-    axios
-      .post("https://396e-103-17-110-13.ngrok-free.app/rec", {
-        image: capturedImage.split(",")[1],
-        choice: selectedImage.split(",")[1],
-      })
-      .then(function (response) {
-        console.log(response);
-        setGeneratedImage(`data:image/webp;base64,${response.data.result}`);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    navigate("/generated-image");
+    if (selectedImage) {
+      axios
+        .post("https://396e-103-17-110-13.ngrok-free.app/rec", {
+          image: capturedImage.split(",")[1],
+          choice: selectedImage.split(",")[1],
+        })
+        .then(function (response) {
+          console.log(response);
+          setGeneratedImage(`data:image/webp;base64,${response.data.result}`);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      navigate("/generated-image");
+    } else {
+      toast.error("Please select an image...", toastOptions);
+    }
   };
   return (
     <AvatarPageWrapper>
@@ -56,7 +70,6 @@ export default function AvatarPage({ capturedImage, setGeneratedImage }) {
         </div>
       </header>
       {/* header ends here */}
-
       {/* main starts here */}
       <main>
         {superHeros &&
@@ -92,6 +105,7 @@ export default function AvatarPage({ capturedImage, setGeneratedImage }) {
         <button onClick={handleSubmit}>Submit</button>
       </footer>
       {/* main ends here */}
+      <ToastContainer />
     </AvatarPageWrapper>
   );
 }
