@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { superHeros } from "../utils/constants";
+import { freedomFighters } from "../utils/constants";
 import logo from "./../assets/logo.png";
 import select from "./../assets/select.png";
 
@@ -72,8 +72,8 @@ export default function AvatarPage({ capturedImage, setGeneratedImage }) {
       {/* header ends here */}
       {/* main starts here */}
       <main>
-        {superHeros &&
-          superHeros.map((src, index) => (
+        {freedomFighters &&
+          freedomFighters.map((src, index) => (
             <div
               key={index}
               className="singleImageContainer"
@@ -115,11 +115,11 @@ const AvatarPageWrapper = styled.div`
   padding-bottom: 2vw;
   /* header starts here */
   header {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: space-between;
     .title {
-      border: 1px solid red;
+      /* border: 1px solid red; */
       flex: 1;
       display: flex;
       justify-content: center;
@@ -136,7 +136,7 @@ const AvatarPageWrapper = styled.div`
     .logo {
       width: 10vw;
       height: 10vw;
-      border: 1px solid red;
+      /* border: 1px solid red; */
       img {
         width: 100%;
         height: 100%;
@@ -147,7 +147,7 @@ const AvatarPageWrapper = styled.div`
 
   /* main starts here */
   main {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,14 +164,17 @@ const AvatarPageWrapper = styled.div`
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      border: 0.15vw solid #fff;
       .imageParent {
         /* position: relative; */
         height: 100%;
+
         img {
           width: 12vw;
           height: 100%;
           box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
           border-radius: 0.9vw;
+
           transition: all ease 0.5s;
         }
         &:hover img {
@@ -216,7 +219,7 @@ const AvatarPageWrapper = styled.div`
 
   /* footer starts here */
   footer {
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     button {
       border: none;
       outline: none;
@@ -240,13 +243,36 @@ const AvatarPageWrapper = styled.div`
   /* footer ends here */
 
   /* for big screens */
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1440px) {
     main {
       height: 100vh;
     }
   }
 
   /* for laptop screens */
+  @media screen and (max-width: 1440px) {
+    main {
+      height: 95vh;
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    main {
+      height: 95vh;
+    }
+  }
+
+  @media screen and (max-width: 1340px) {
+    main {
+      height: 90vh;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    main {
+      height: 90vh;
+    }
+  }
   @media screen and (max-width: 768px) {
     background: url("./../src/assets/tablet-background-image.png");
     background-position: center;

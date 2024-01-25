@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import logo from "./../assets/logo.png";
-import frame from "./../assets/capture-image-page/republic-day-frame.png";
+import frame from "./../assets/bigscreen-capture-image-frame.png";
 
 export default function CaptureImagePage({ setCapturedImg }) {
   const navigate = useNavigate();
@@ -58,8 +58,12 @@ export default function CaptureImagePage({ setCapturedImg }) {
           <img src={frame} alt="frame" className="frame" />
         </div>
         <div className="capture">
-          <button onClick={e => handleCapture(e)}>Capture</button>
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={e => handleCapture(e)} className="captureRetake">
+            Capture
+          </button>
+          <button onClick={handleSubmit} className="submit">
+            Submit
+          </button>
         </div>
       </div>
       <div className="logo">
@@ -71,12 +75,12 @@ export default function CaptureImagePage({ setCapturedImg }) {
 }
 
 const CaptureImageWrapper = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   /* captureImage starts here */
   .captureImage {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 100vh;
     flex: 1;
     display: flex;
@@ -87,8 +91,8 @@ const CaptureImageWrapper = styled.div`
     padding-left: 10vw;
     .webcamContainer {
       position: relative;
-      height: 75vh;
-      width: 30vw;
+      height: 26.25vw;
+      width: 35vw;
       background-color: #f1f1f1;
       /* box-shadow: 1vw, 1vw, 1vw rgba(0, 0, 0, 0.5); */
       /* border: 5px solid black; */
@@ -108,7 +112,7 @@ const CaptureImageWrapper = styled.div`
           position: absolute;
           top: 0;
           left: 0;
-          transform: scale(1.65, 1);
+          /* transform: scale(1.65, 1); */
         }
       }
       .frame {
@@ -121,13 +125,14 @@ const CaptureImageWrapper = styled.div`
     }
 
     .capture {
-      border: 1px solid black;
+      /* border: 1px solid black; */
       display: flex;
       gap: 2vw;
       button {
+        /* border: 0.13vw solid black; */
         text-align: center;
         width: 16vw;
-        border: 0.13vw solid black;
+        border: none;
         background-color: transparent;
         outline: none;
         padding: 0.2vw 2vw;
@@ -135,13 +140,27 @@ const CaptureImageWrapper = styled.div`
         font-size: 2.5vw;
         border-radius: 0.6vw;
         cursor: pointer;
+        transform: translateY(-0.1vw);
+        transition: all ease 0.5s;
+        box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
+        &:hover {
+          box-shadow: none;
+          transform: translateY(0);
+        }
+      }
+      .captureRetake {
+        background-color: #fcb017;
+      }
+      .submit {
+        border: 0.1vw solid black;
+        background-color: transparent;
       }
     }
   }
   /* captureImage ends here */
 
   .logo {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 10vw;
     height: 10vw;
     img {

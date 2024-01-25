@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import logo from "./../assets/logo.png";
 import {
-  superHero01,
-  superHero02,
-  superHero03,
-  superHero04,
-  superHero05,
-  superHero06,
-  superHero07,
-  superHero08,
-  superHero09,
+  freedomFighter01,
+  freedomFighter02,
+  freedomFighter03,
+  freedomFighter04,
+  freedomFighter05,
+  freedomFighter06,
+  freedomFighter07,
+  freedomFighter08,
+  freedomFighter09,
 } from "../assets/home-page/index";
 
 export default function HomePage() {
@@ -32,33 +32,33 @@ export default function HomePage() {
           <Link to={"/capture-image"}>
             <button className="startNow">Start Now</button>
           </Link>
-          <Link to={"/know-more"}>
+          <Link to={"https://techkilla.com/ai-photobooth"}>
             <button className="knowMore">Know More</button>
           </Link>
         </div>
         <div className="images">
           <div className="firstContainer">
-            <img src={superHero01} alt="wonder woman" />
+            <img src={freedomFighter01} alt="wonder woman" />
           </div>
           <div className="secondContainer">
-            <img src={superHero02} alt="natasha" />
-            <img src={superHero03} alt="scarlet witch" />
+            <img src={freedomFighter02} alt="natasha" />
+            <img src={freedomFighter03} alt="scarlet witch" />
           </div>
           <div className="thirdContainer">
             <div className="thirdContainerChildOne">
-              <img src={superHero04} alt="super man" />
+              <img src={freedomFighter08} alt="super man" />
             </div>
             <div className="thirdContainerChildTwo">
-              <img src={superHero05} alt="hermione granger" />
-              <img src={superHero06} alt="super woman" />
+              <img src={freedomFighter05} alt="hermione granger" />
+              <img src={freedomFighter06} alt="super woman" />
             </div>
           </div>
           <div className="fourthContainer">
-            <img src={superHero07} alt="aquaman" />
-            <img src={superHero08} alt="harry potter" />
+            <img src={freedomFighter07} alt="aquaman" />
+            <img src={freedomFighter04} alt="harry potter" />
           </div>
           <div className="fifthContainer">
-            <img src={superHero09} alt="thor" />
+            <img src={freedomFighter09} alt="thor" />
           </div>
         </div>
       </main>
@@ -73,11 +73,11 @@ const HomeWrapper = styled.div`
   /* border: 5px solid red; */
   /* header starts here */
   header {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: space-between;
     h1 {
-      border: 1px solid black;
+      /* border: 1px solid black; */
       flex: 1;
       display: flex;
       justify-content: center;
@@ -89,7 +89,7 @@ const HomeWrapper = styled.div`
     .logo {
       width: 10vw;
       height: 10vw;
-      border: 1px solid red;
+      /* border: 1px solid red; */
       img {
         width: 100%;
         height: 100%;
@@ -100,13 +100,13 @@ const HomeWrapper = styled.div`
 
   /* main starts here */
   main {
+    /* border: 1px solid black; */
     margin-top: 2.5vw;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     /* buttons starts here */
     .buttons {
-      border: 1px solid red;
+      /* border: 1px solid red; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -139,21 +139,22 @@ const HomeWrapper = styled.div`
     /* buttons ends here */
     /* images starts here */
     .images {
+      /* border: 1px solid blue; */
       height: 90vh;
-      border: 1px solid blue;
       display: flex;
       justify-content: center;
       gap: 1vw;
       img {
         box-shadow: 0.1vw 0.1vw 0.4vw rgba(0, 0, 0, 0.5);
         border-radius: 0.9vw;
+        border: 0.15vw solid #fff;
       }
       img:hover {
         transform: scale(1.07);
       }
       .firstContainer,
       .fifthContainer {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         height: 100%;
         display: flex;
         justify-content: center;
@@ -165,7 +166,7 @@ const HomeWrapper = styled.div`
       }
       .secondContainer,
       .fourthContainer {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -178,8 +179,8 @@ const HomeWrapper = styled.div`
         }
       }
       .thirdContainer {
+        /* border: 1px solid black; */
         padding-top: 7vw;
-        border: 1px solid black;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -192,7 +193,7 @@ const HomeWrapper = styled.div`
           }
         }
         .thirdContainerChildTwo {
-          border: 1px solid green;
+          /* border: 1px solid green; */
           display: flex;
           align-items: flex-start;
           gap: 2vw;

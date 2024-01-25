@@ -1,21 +1,21 @@
-import superHero01 from "./landing-page-02.png";
-import superHero02 from "./landing-page-03.png";
-import superHero03 from "./landing-page-04.png";
-import superHero04 from "./landing-page-05.png";
-import superHero05 from "./landing-page-06.png";
-import superHero06 from "./landing-page-07.png";
-import superHero07 from "./landing-page-08.png";
-import superHero08 from "./landing-page-09.png";
-import superHero09 from "./landing-page-10.png";
+import freedomFighter01 from "./freedom-fighter-01.png";
+import freedomFighter02 from "./freedom-fighter-02.png";
+import freedomFighter03 from "./freedom-fighter-03.png";
+import freedomFighter04 from "./freedom-fighter-04.png";
+import freedomFighter05 from "./freedom-fighter-05.png";
+import freedomFighter06 from "./freedom-fighter-06.png";
+import freedomFighter07 from "./freedom-fighter-07.png";
+import freedomFighter08 from "./freedom-fighter-08.png";
+import freedomFighter09 from "./freedom-fighter-09.png";
 
 export {
-  superHero01,
-  superHero02,
-  superHero03,
-  superHero04,
-  superHero05,
-  superHero06,
-  superHero07,
-  superHero08,
-  superHero09,
+  freedomFighter01,
+  freedomFighter02,
+  freedomFighter03,
+  freedomFighter04,
+  freedomFighter05,
+  freedomFighter06,
+  freedomFighter07,
+  freedomFighter08,
+  freedomFighter09,
 };

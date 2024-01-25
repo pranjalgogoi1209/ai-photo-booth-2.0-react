@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
+import exportAsImage from "../utils/exportAsImage";
+import logo from "./../assets/logo.png";
+import frame from "./../assets/generated-image-frame.png";
 
 export default function GeneratedImagePage({ generatedImage }) {
+  const exportRef = useRef();
   //   const [isLoading, setIsLoading] = useState(false);
   generatedImage && console.log(generatedImage);
 
@@ -13,10 +17,33 @@ export default function GeneratedImagePage({ generatedImage }) {
 
   return (
     <GeneratedImageWrapper>
+      {/* header starts here */}
+      <header>
+        <div className="title">
+          <h1>Download Your Image</h1>
+        </div>
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
+      </header>
+      {/* header ends here */}
       {generatedImage ? (
-        <div className="generatedImage">
-          <img src={generatedImage} alt="generated image" />
-          <button>Download</button>
+        <div className="generatedImageContainer">
+          <div className="generatedImageParent" ref={exportRef}>
+            <img
+              src={generatedImage}
+              alt="generated image"
+              className="generatedImage"
+            />
+            <img src={frame} alt="generated image frame" className="frame" />
+          </div>
+          <button
+            onClick={() =>
+              exportAsImage(exportRef.current, "ai-photobooth-freedom-fighter")
+            }
+          >
+            Download
+          </button>
         </div>
       ) : (
         <div className="loading">
@@ -35,14 +62,67 @@ export default function GeneratedImagePage({ generatedImage }) {
 const GeneratedImageWrapper = styled.div`
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  .generatedImage {
-    img {
-      width: 40vh;
-      box-shadow: 0.2vh 0.2vh 0.8vh rgba(0, 0, 0, 0.5);
-      border-radius: 3.5vh;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* border: 1px solid black; */
+
+  /* header starts here */
+  header {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    .title {
+      /* border: 1px solid red; */
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 10vw;
+      h1 {
+        border: 0.15vw solid black;
+        padding: 0.1vw 0.4vw;
+        font-size: 3vw;
+        font-weight: 600;
+        border-radius: 0.7vw;
+      }
     }
+    .logo {
+      width: 10vw;
+      height: 10vw;
+      /* border: 1px solid red; */
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  /* header ends here */
+  .generatedImageContainer {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+    margin-top: 3vw;
+    .generatedImageParent {
+      /* border: 1px solid black; */
+      margin: 0 auto;
+      width: 40vh;
+      position: relative;
+      .generatedImage {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0.2vh 0.2vh 0.8vh rgba(0, 0, 0, 0.5);
+        border-radius: 3.5vh;
+      }
+      .frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 101%;
+        height: 101%;
+      }
+    }
+
     button {
       border: none;
       outline: none;
@@ -64,7 +144,9 @@ const GeneratedImageWrapper = styled.div`
     }
   }
 
+  /* loading starts here */
   .loading {
+    margin: auto;
     .lds-ring {
       display: inline-block;
       position: relative;
@@ -101,4 +183,5 @@ const GeneratedImageWrapper = styled.div`
       }
     }
   }
+  /* loading ends here */
 `;
